@@ -1,0 +1,769 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('GILROY.TTF') format('truetype');
+}
+body {
+    
+    margin: 0;
+    overflow-x: hidden;
+    background: rgb(13, 13, 13);
+    font-family: "MyFont", system-ui, sans-serif;
+  
+}
+
+
+header {
+    border-bottom: 1px solid;
+    border-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(255,255,255,0.25),
+      transparent
+    ) 1;
+}
+
+
+.aviacontrolDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+}
+
+
+.aviacontrolAva {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.aviacontrolButton {
+    background: rgb(18, 18, 18);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "MyFont", system-ui, sans-serif;
+    flex-shrink: 0;
+}
+
+.aviacontrolh1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
+}
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.25s ease;
+}
+
+.popup-content {
+    position: relative;
+    width: min(420px, 90%);
+    background: linear-gradient(145deg, rgb(20,20,20), rgb(12,12,12));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px;
+    color: rgba(255,255,255,0.9);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    font-size: 13px;
+    line-height: 1.5;
+    animation: pop 0.25s ease forwards;
+}
+
+.text {
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.item {
+    margin: 14px 0;
+}
+
+.sub-item {
+    display: block;
+    margin-top: 6px;
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+}
+
+.popup-content a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.popup-content a:hover {
+    text-decoration: underline;
+}
+
+.copy-btn {
+    margin-left: 8px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    border-radius: 6px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+.copy-btn svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+
+.copy-btn:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: white;
+    transform: scale(1.05);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    transition: 0.2s;
+}
+
+.close:hover {
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pop {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+#mapContainer {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: visible;
+    cursor: default;
+    touch-action: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+  }
+  
+  #mapInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    display: flex;      
+    flex-direction: column;
+  }
+  
+  #mapImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none; 
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
+  
+  #closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  
+  .active {
+    cursor: grab;
+  }
+
+  .aviacontrolDonate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+
+    background: rgb(18, 18, 18);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-family: "MyFont", system-ui, sans-serif;
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    flex-shrink: 0;
+}
+
+
+.aviacontrolDonate:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgb(22, 22, 22);
+    transform: translateY(-1px);
+}
+
+
+.aviacontrolDonate:active {
+    transform: scale(0.97);
+}
+
+
+.aviacontrolDonate .donate-icon {
+    width: 16px;
+    height: 16px;
+
+    fill: white;
+    opacity: 0.85;
+
+    display: block;
+}
+
+
+.aviacontrolDonate span {
+    font-size: 13px;
+    white-space: nowrap;
+  
+}
+.tg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.tg-icon {
+    width: 14px;
+    height: 14px;
+
+    fill: white;
+
+    display: block;
+    flex-shrink: 0;
+}
+
+
+.tg-btn span {
+    white-space: nowrap;
+    text-decoration: none;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.aviacontrolSub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    margin: 2px 0 6px 0;
+}
+.header-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+.aviacontrolDonate,
+.aviacontrolButton.tg-btn {
+    height: 40px;
+    padding: 0 16px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: rgb(18, 18, 18);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 8px;
+    
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "MyFont", system-ui, sans-serif;
+    font-size: 14px;
+    
+    
+    text-decoration: none !important; 
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-sizing: border-box;
+}
+
+
+.aviacontrolDonate:hover,
+.aviacontrolButton.tg-btn:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgb(22, 22, 22);
+    transform: translateY(-1px);
+    text-decoration: none !important; 
+}
+
+
+.donate-icon,
+.tg-icon {
+    width: 16px;
+    height: 16px;
+    fill: white;
+    opacity: 0.85;
+    flex-shrink: 0;
+    display: block;
+}
+
+
+.header-actions a {
+    text-decoration: none !important;
+}
+
+#aviacontrolShahed, #aviacontrolKr {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+ 
+  
+  .shahedText {
+   
+    
+   
+    margin-left: 30px;
+
+    font-size: 20px;
+    color: white;
+    white-space: nowrap;
+    font-family: "MyFont", system-ui, sans-serif;
+}
+
+
+  .krText {
+   
+    margin-left: 40px;
+   
+    font-size: 20px;
+    color: white;
+    white-space: nowrap;
+    font-family: "MyFont", system-ui, sans-serif;
+    line-height: 1;  
+   
+}
+.aviacontrolShahedContainer {
+   margin-left: 14px;
+    margin-bottom: 30px; 
+}
+.aviacontrolShahedContainer, 
+.aviacontrolKrContainer {
+ 
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+}
+.main-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0; 
+  }
+  .shahedWrap,
+.krWrap {
+    width: 80px;
+    height: 80px;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transform-origin: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  
+}
+  .leftUI {
+    display: flex;
+  flex-direction: column;
+  gap: 0; 
+  padding-left: 30px; 
+  margin-top: 20px;
+  pointer-events: auto;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    width: min-content;     
+   
+  }
+  .shahedText, .krText {
+    padding-top: 15px; 
+    
+    line-height: 1;
+  
+    font-size: 20px;
+    color: white;
+    white-space: nowrap;
+    font-family: "MyFont", system-ui, sans-serif;
+    line-height: 1; 
+  }
+  .warningContainer {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;             
+    margin-top: 45px;
+    margin-left: 30px;
+    
+    width: fit-content;
+
+}
+
+.warningText {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; 
+    font-family: "MyFont", system-ui, sans-serif;
+}
+
+.warningValue {
+    background: #e31e24;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    border-radius: 10px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    min-width: 20px;
+    flex-shrink: 0;
+    font-family: "MyFont", system-ui, sans-serif;
+}
+.spacer {
+    height: 50px; 
+    width: 100%;
+    pointer-events: none; 
+}
+@media (max-width: 768px) {
+    .header-block {
+        position: static;
+        width: 100%;
+    }
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .aviacontrolDiv {
+        flex-direction: column;
+        padding: 10px;
+        gap: 12px;
+    }
+    
+
+    .aviacontrolAva {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+    
+    
+    .aviacontrolh1 {
+        font-size: 13px;
+        margin: 0;
+        text-align: center;
+    
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+   
+    .aviacontrolButton {
+        font-size: 10px;
+        font-size: "MyFont", system-ui, sans-serif;
+        padding: 6px 8px;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    
+    .popup-content {
+        width: 92%;
+        padding: 14px;
+        font-size: 12px;
+        border-radius: 12px;
+    }
+
+    .text {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .item {
+        margin: 12px 0;
+    }
+
+    .sub-item {
+        font-size: 12px;
+    }
+
+   
+    .copy-btn {
+        font-size: 11px;
+        padding: 2px 4px;
+    }
+    .copy-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .close {
+        font-size: 18px;
+        top: 8px;
+        right: 10px;
+    }
+    #mapContainer {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        touch-action: none; 
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    #mapInner {
+        will-change: transform;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    #mapImage {
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+    .header-actions {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 8px;
+        margin-top: 5px;
+        width: 100%;
+        
+    }
+    
+   
+    .aviacontrolDonate,
+    .aviacontrolButton.tg-btn {
+        height: 38px !important;
+        min-height: 36px !important;
+        padding: 0 14px !important;
+        
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important; 
+        
+        background: rgb(18, 18, 18) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+        
+        font-family: "MyFont", system-ui, sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: white !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        flex: 1; 
+        max-width: 160px;
+    }
+    
+    .aviacontrolDonate span,
+    .tg-btn span {
+        font-family: "MyFont", system-ui, sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 500 !important; 
+        line-height: 1 !important; 
+        letter-spacing: normal !important;
+        display: inline-block !important;
+        justify-content: center;
+    }
+    .donate-icon,
+    .tg-icon {
+        width: 14px !important;
+        height: 14px !important;
+        min-width: 14px !important;
+        max-width: 14px !important;
+        display: block !important; 
+        stroke-width: 0; 
+        fill: rgba(255, 255, 255, 0.9) !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+       
+    }
+    .aviacontrolButton.tg-btn {
+        flex: 1;
+    max-width: 140px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px !important;
+    gap: 6px !important;  
+    }
+    .tg-btn .tg-icon {
+        margin-left: -10px !important; 
+        margin-right: 4px !important;  
+       
+    }
+
+    .header-actions .tg-btn {
+        justify-content: center !important;
+       
+    }
+  
+  
+    .aviacontrolSub {
+        font-size: 11px;
+       
+        padding: 0 10px;
+    }
+    .leftUI {
+        padding-left: 15px; 
+        margin-top: 10px;
+      }
+    
+      
+      .shahedWrap, .krWrap {
+        width: 50px;  
+        height: 50px; 
+      }
+    
+     
+      .shahedText, .krText {
+        font-size: 16px; 
+        padding-top: 8px;
+      }
+    
+     
+      .shahedText {
+        margin-left: 10px; 
+      }
+      
+      .krText {
+        margin-left: 10px;
+      }
+    
+      
+      .aviacontrolShahedContainer {
+        margin-left: 0;   
+        margin-bottom: 20px; 
+      }
+    
+      
+      .content-wrapper {
+        width: 100%;
+      }
+      
+      #mapContainer {
+        width: 100vw;
+        height: 60vh; 
+      }
+      .warningContainer {
+        display: flex !important;
+        flex-direction: row !important; /* Чітко в один ряд */
+        align-items: stretch !important; /* Кнопка на всю висоту тексту */
+        
+        margin: 20px 10px 0 0 !important; /* Притиснули правіше, бо у .leftUI вже є padding-left 15px */
+        width: calc(100% - 10px) !important; 
+        box-sizing: border-box !important;
+        border: 1px solid rgba(255,255,255,0.1); /* Ледь замітна рамка */
+        border-radius: 4px !important;
+        overflow: hidden !important;
+    }
+
+    /* Текст: мінімальні відступи, щоб не роздувати блок */
+    .warningText {
+        white-space: normal !important; 
+        font-size: 11px !important; /* Трохи менше, щоб влізло в рядок */
+        padding: 4px 8px !important; /* Компактні відступи */
+        line-height: 1.2 !important;
+        flex: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        background: rgba(255, 255, 255, 0.05) !important; /* Легкий фон тексту */
+    }
+
+    /* Кнопка: прибрали лишні паддінги, фіксована ширина */
+    .warningValue {
+        font-size: 14px !important;
+        font-weight: bold !important;
+        padding: 0 !important; /* Нуль паддінгів, щоб не була як слон */
+        min-width: 45px !important; /* Чітка ширина для відсотків */
+        flex-shrink: 0 !important;
+        
+        background-color: #ff4d4d !important; /* ЧЕРВОНИЙ КОЛІР (щоб було видно) */
+        color: white !important;
+        
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .spacer {
+        height: 20px !important;
+    }
+}
